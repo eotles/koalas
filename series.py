@@ -4,6 +4,7 @@ Data structure for 1-dimensional data
 
 import collections
 
+#TODO: make index method
 #TODO: head method
 #TODO: not sure about how index should work
 class Series(object):
@@ -22,11 +23,14 @@ class Series(object):
         for index_position, index_value in enumerate(index):
             self.data[index_value] = data[index_position]
         self.index = index
+        self.type = None
     
     
     def __str__(self):
-        s = 'Series - name: %s\n' %(self.name)
-        s+= '\n'.join(['%s: %s' %(k,v) for k,v in self.data.iteritems()])
+        s = '%s\n' %('\n'.join(['%s\t%s' %(k,v) for k,v in self.data.iteritems()]))
+        if(self.name is not None):
+            s+= 'Name: %s,' %(self.name)
+        s+= 'dtype: %s' %(self.type)
         return(s)
     
     __repr__ = __str__
@@ -56,7 +60,12 @@ class Series(object):
     def __ge__(self, b):
         return(self.apply(lambda x: x>=b))
     
-    def head(self):
-        pass
+    #TODO: use slice
+    def head(self, n=5):
+    
+
+    #TODO: make slice
+    def slice():
+
             
 
