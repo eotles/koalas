@@ -1,3 +1,7 @@
+import series
+
+Series = series.Series
+
 class DataFrame(object):
     #list of rows (which are lists)
     

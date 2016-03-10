@@ -2,13 +2,61 @@
 Data structure for 1-dimensional data
 '''
 
+import collections
+
+#TODO: head method
+#TODO: not sure about how index should work
 class Series(object):
-    ''' dictionary '''
+    ''' based on dictionary '''
     
     def __init__(self, data=None, index=None, name=None):
+        #data - can be:
+        #   dictionary (no index)
+        #   list - index as list
         self.name = name
-        if(data is None): data = {}
-        if(index is None and not isinstance(data, dict)): 
-            data = {k: v for k,v in enumerate(v)}
-            index = range(len(data))
-            data = {
+        self.data = collections.OrderedDict()
+        if(data is None): 
+            data = []
+        if(index is None):
+            index = [i for i in xrange(len(data))]
+        for index_position, index_value in enumerate(index):
+            self.data[index_value] = data[index_position]
+        self.index = index
+    
+    
+    def __str__(self):
+        s = 'Series - name: %s\n' %(self.name)
+        s+= '\n'.join(['%s: %s' %(k,v) for k,v in self.data.iteritems()])
+        return(s)
+    
+    __repr__ = __str__
+    
+    def apply(self, fx):
+        data = [fx(v) for v in self.data.values()]
+        return(Series(data, index=self.index))
+        
+    def __getitem__(self, index_value):
+        return(self.data[index_value])
+    
+    def __eq__(self, b):
+        return(self.apply(lambda x: x==b))
+    
+    def __ne__(self, b):
+        return(self.apply(lambda x: x!=b))
+    
+    def __lt__(self, b):
+        return(self.apply(lambda x: x< b))
+    
+    def __le__(self, b):
+        return(self.apply(lambda x: x<=b))
+        
+    def __gt__(self, b):
+        return(self.apply(lambda x: x> b))
+    
+    def __ge__(self, b):
+        return(self.apply(lambda x: x>=b))
+    
+    def head(self):
+        pass
+            
+
