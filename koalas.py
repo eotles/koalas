@@ -1,7 +1,10 @@
 class DataFrame(object):
     #list of rows (which are lists)
     
+    #FIX:
     def __init__(self, data=None, index=None, columns=None):
+        if(data is None):
+            data = [[]]
         if(index is None):
             index = [i for i in xrange(len(data))]
         if(columns is None):
@@ -14,14 +17,14 @@ class DataFrame(object):
             if(rows_are_lists and rows_are_dicts): 
                 raise ValueError('Data contains both lists and dicts')
             
-            if(type(row) = list):
+            if(type(row) is list):
                 rows_are_lists = True
                 if(len(columns) < len(row)):
                     raise ValueError('Rows are longer than columns specify')
                 for col_pointer, element in enumerate(row):
                     data_in_col[col_pointer].append(element)
             
-            elif(type(row) = dict):
+            elif(type(row) is dict):
                 rows_are_dicts = True
                 
         self.data = data
