@@ -3,6 +3,7 @@ Data structure for 1-dimensional data
 '''
 
 import collections
+import index
 
 #TODO: make index method
 #TODO: head method
@@ -22,7 +23,7 @@ class Series(object):
             index = [i for i in xrange(len(data))]
         for index_position, index_value in enumerate(index):
             self.data[index_value] = data[index_position]
-        self.index = index
+        self.index = Index(index)
         self.type = None
     
     
