@@ -3,7 +3,8 @@ Data structure for 1-dimensional data
 '''
 
 import collections
-import index
+import index as klindex
+reload(klindex)
 
 #TODO: make index method
 #TODO: head method
@@ -23,7 +24,7 @@ class Series(object):
             index = [i for i in xrange(len(data))]
         for index_position, index_value in enumerate(index):
             self.data[index_value] = data[index_position]
-        self.index = Index(index)
+        self.index = klindex.Index(index)
         self.type = None
     
     
@@ -63,10 +64,11 @@ class Series(object):
     
     #TODO: use slice
     def head(self, n=5):
-    
+        pass
 
     #TODO: make slice
     def slice():
+        pass
 
             
 
